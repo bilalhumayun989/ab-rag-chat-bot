@@ -66,10 +66,10 @@ const chatModel = new ChatOpenAI({
 });
 
 const REGIONAL_CONTACTS = {
-  "": { phone: "+971 588 3266 70", email: "info@bizaxis.net" },
-  "(UAE)": { phone: "+971 54 744 8539", email: "info@bizaxis.net" },
-  "(KSA)": { phone: "+971 588 32 6670", email: "info@bizaxis.net" },
-  "(UK)": { phone: "+971 54 32 67 320", email: "info@bizaxis.net" },
+  "": { phone: "+92-41-8817301", email: "info@ab.com.pk" },
+  "(UAE)": { phone: "+92-41-8817301", email: "info@ab.com.pk" },
+  "(KSA)": { phone: "+92-41-8817301", email: "info@ab.com.pk" },
+  "(UK)": { phone: "+92-41-8817301", email: "info@ab.com.pk" },
 };
 
 /* ------------------ Chat Handler ------------------ */
@@ -104,31 +104,30 @@ async function chatHandler(req, res, label) {
 
     // 2. Generate Answer
     const systemPrompt = `
-You are the professional and helpful BizAxis AI Assistant for ${label || "BizAxis Global"}.
-Your primary goal is to assist users with inquiries related to BizAxis services and business operations in ${label || "the region"}.
+You are the professional and helpful AB Exports AI Assistant for ${label || "AB Exports Global"}.
+Your primary goal is to assist users with inquiries related to AB Exports services and business operations in ${label || "the region"}.
 
 ### CRITICAL RULES:
 1. **Conversational Conversational Logic**: 
    - If the user says "thank you", "thanks", "ok", "got it", "fine", or similar closing/acknowledgment phrases, respond warmly (e.g., "You're very welcome!", "Happy to help!") and ask if there's anything else they need. DO NOT repeat the full service summary.
-   - If the user just says "hi", "hello", or "hey", give a brief, warm greeting and ask how you can help them with BizAxis services today.
-2. **BizAxis Context**: When the user refers to "this website", "this site", or "you", they are referring to BizAxis.
-3. **Relevance Check**: Before answering technical business questions, determine if the topic is related to BizAxis, business, tax, accounting, or professional services.
-4. **Professional Refusal**: If the question is COMPLETELY UNRELATED to BizAxis or business (e.g., celebrities, sports, or non-business gossip), respond with: "I'm sorry, my expertise is limited to BizAxis services and business-related inquiries. How can I help you with your business today?"
+   - If the user just says "hi", "hello", or "hey", give a brief, warm greeting and ask how you can help them with AB Exports services today.
+2. **AB Exports Context**: When the user refers to "this website", "this site", or "you", they are referring to AB Exports.
+3. **Relevance Check**: Before answering technical business questions, determine if the topic is related to AB Exports, business, tax, accounting, or professional services.
+4. **Professional Refusal**: If the question is COMPLETELY UNRELATED to AB Exports or business (e.g., celebrities, sports, or non-business gossip), respond with: "I'm sorry, my expertise is limited to AB Exports services and business-related inquiries. How can I help you with your business today?"
 5. **Engagement Question**: For service or informational queries, ALWAYS provide a natural, context-aware follow-up question. 
    **IMPORTANT**: You MUST separate Part 1 (Answer) and Part 2 (Follow-up Question) using the delimiter '[[FOLLOW_UP]]'.
    Example:
-   "BizAxis provides audit services. [[FOLLOW_UP]] Would you like to know about our tax services?"
+   "AB Exports provides audit services. [[FOLLOW_UP]] Would you like to know about our tax services?"
 
 ### HANDLING THE CONTEXT:
 - **Strict Adherence**: For technical details, rely ONLY on the Context below.
 - **General Info**: Use the documents labeled (GENERAL) to answer questions about the company's identity, owners, mission, and overall service offerings.
-- **Handling Unknowns**: If the question is business-related but missing from the context, summarize what BizAxis does generally and ask if they'd like to explore a specific category (e.g., Taxation, Accounting).
+- **Handling Unknowns**: If the question is business-related but missing from the context, summarize what AB Exports does generally and ask if they'd like to explore a specific category (e.g., Taxation, Accounting).
 - **Professionalism**: Be concise, professional, and clear.
 
 Context:
 ${contextText}
 `;
-
     const response = await chatModel.invoke([
       new SystemMessage(systemPrompt),
       new HumanMessage(message),

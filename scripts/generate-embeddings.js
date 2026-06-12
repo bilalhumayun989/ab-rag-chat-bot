@@ -6,11 +6,13 @@ import { OpenAIEmbeddings } from "@langchain/openai";
 dotenv.config();
 
 const DATA_FILES = [
-  { name: "data.jsonl", label: "" },
-  { name: "data-uk.jsonl", label: "(UK)" },
-  { name: "data-uae.jsonl", label: "(UAE)" },
-  { name: "data-ksa.jsonl", label: "(KSA)" },
   { name: "general-info.jsonl", label: "(GENERAL)" },
+  { name: "hospital-layouts.jsonl", label: "(HOSPITAL_LAYOUTS)" },
+  { name: "home-layouts.jsonl", label: "(HOME_LAYOUTS)" },
+  { name: "hotel-layout.jsonl", label: "(HOTEL_LAYOUTS)"  },
+  { name: "catalog-ab.jsonl", label: "(CATALOG)"  },
+  { name: "bedding.jsonl", label: "(BEDDING)"  },
+  { name: "AB_Exports_Production_Capabilities.jsonl", label: "(PRODUCTION_CAPABILITIES)"  }
 ];
 
 const OUTPUT_FILE = "data/embeddings.json";
